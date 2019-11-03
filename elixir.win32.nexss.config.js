@@ -3,7 +3,7 @@ languageConfig.title = "Elixir";
 languageConfig.description =
   "Elixir is a dynamic, functional language designed for building scalable and maintainable applications.";
 languageConfig.url = "https://elixir-lang.org/";
-languageConfig.extensions = [".exs"];
+languageConfig.extensions = [".exs", ".ex"];
 languageConfig.builders = {};
 languageConfig.compilers = {
   elixir: {
@@ -20,8 +20,8 @@ languageConfig.languagePackageManagers = {
     installation: "installed.",
     messageAfterInstallation: "",
     installed: "mix escript",
-    search: "mix search",
-    install: "mix deps",
+    search: "mix hex.search",
+    install: "mix archive.install hex",
     uninstall: "mix remove",
     help: "mix",
     version: "mix version",
