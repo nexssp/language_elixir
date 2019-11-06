@@ -4,14 +4,18 @@
 defmodule Reader do
   def read do
     case IO.read(:stdio, :line) do
-      :eof -> :ok
-      {:error, reason} -> IO.puts "Error: #{reason}"
+      :eof ->
+        :ok
+
+      {:error, reason} ->
+        IO.puts("Error: #{reason}")
+
       data ->
         {:ok, json} = JSON.decode(data)
 
         new_bar_map =
-            json
-            |> Map.put(:test, "test")
+          json
+          |> Map.put(:HelloFromElixir, System.version())
 
         # my_value = json
         # |> Map.get("start")

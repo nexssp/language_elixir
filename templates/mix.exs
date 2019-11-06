@@ -32,7 +32,7 @@ defmodule MyApp.Mixfile do
   defp deps do
     [{:json, "~> 1.2"}]
   end
-  defp escript do
-    [main_module: ExampleApp.CLI]
-  end
+  # defp escript do
+  #   [main_module: ExampleApp.CLI]
+  # end
 end

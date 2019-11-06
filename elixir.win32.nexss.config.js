@@ -9,8 +9,8 @@ languageConfig.compilers = {
   elixir: {
     install: "scoop install erlang elixir",
     // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
-    command: "elixir",
-    args: "<file>",
+    command: "mix",
+    args: "run <file>",
     help: ``
   }
 };
@@ -18,6 +18,7 @@ languageConfig.errors = require("./nexss.elixir.errors");
 languageConfig.languagePackageManagers = {
   mix: {
     installation: "installed.",
+    rebar3: `Powershell -File ${__dirname}/install/installRebar3.ps1`,
     messageAfterInstallation: "",
     installed: "mix escript",
     search: "mix hex.search",
