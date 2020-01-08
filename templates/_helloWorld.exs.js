@@ -4,7 +4,9 @@ const config = {
   files: ["mix.exs"],
   commands: ["cd src && mv mix.exs ../mix.exs && cd .. && mix deps.get"],
   repos: [],
-  descriptions: []
+  descriptions: [
+    "!!! You may see some warnings at the very first run of your Elixir program."
+  ]
 };
 
 module.exports = config;

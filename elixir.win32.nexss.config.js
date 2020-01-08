@@ -4,11 +4,11 @@ languageConfig.description =
   "Elixir is a dynamic, functional language designed for building scalable and maintainable applications.";
 languageConfig.url = "https://elixir-lang.org/";
 languageConfig.extensions = [".exs", ".ex"];
+languageConfig.interactiveShell = "iex";
 languageConfig.builders = {};
 languageConfig.compilers = {
   elixir: {
     install: "scoop install erlang elixir",
-    // Cpp does not have possibility to compile and run on the fly. We need to save it as a exe file first.
     command: "mix",
     args: "run <file>",
     help: ``
@@ -17,7 +17,7 @@ languageConfig.compilers = {
 languageConfig.errors = require("./nexss.elixir.errors");
 languageConfig.languagePackageManagers = {
   mix: {
-    installation: "installed.",
+    installation: "scoop install erlang elixir",
     rebar3: `Powershell -File ${__dirname}/install/installRebar3.ps1`,
     messageAfterInstallation: "",
     installed: "mix escript",
@@ -38,9 +38,7 @@ languageConfig.languagePackageManagers = {
         console.log("mix already initialized.");
       }
     },
-    // if command not found in specification
-    // run directly on package manager
-    else: "composer <default> <args>"
+    else: "mix"
   }
 };
 
