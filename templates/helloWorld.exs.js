@@ -2,7 +2,9 @@
 // in this case library needs JSON
 const config = {
   files: ["mix.exs"],
-  commands: ["cd src && mv mix.exs ../mix.exs && cd .. && mix deps.get"],
+  commands: [
+    "IF exist src (cd src && mv mix.exs ../mix.exs && cd ..) else ( mix deps.get)"
+  ],
   repos: [],
   descriptions: [
     "!!! You may see some warnings at the very first run of your Elixir program."
