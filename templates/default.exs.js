@@ -3,7 +3,7 @@
 const config = {
   files: ["mix.exs"],
   commands: [
-    "IF exist src (cd src && mv mix.exs ../mix.exs && cd ..) else ( mix deps.get)"
+    `Powershell -Command "if (Test-Path src ) { cd src ; mv mix.exs ; ../mix.exs ; cd ..} else { mix deps.get }"`
   ],
   repos: [],
   descriptions: [

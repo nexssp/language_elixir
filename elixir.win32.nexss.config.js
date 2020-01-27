@@ -8,7 +8,7 @@ languageConfig.interactiveShell = "iex";
 languageConfig.builders = {};
 languageConfig.compilers = {
   elixir: {
-    install: "scoop install erlang elixir",
+    install: `scoop install erlang elixir && ${process.env.NEXSS_SRC_PATH}\\install\\refreshenv.cmd`,
     command: "mix",
     args: "run <file>",
     help: ``
