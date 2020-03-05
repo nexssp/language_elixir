@@ -3,6 +3,9 @@ languageConfig.title = "Elixir";
 languageConfig.description =
   "Elixir is a dynamic, functional language designed for building scalable and maintainable applications.";
 languageConfig.url = "https://elixir-lang.org/";
+languageConfig.founders = ["José Valim"];
+languageConfig.developers = [""];
+languageConfig.years = ["2012"];
 languageConfig.extensions = [".exs", ".ex"];
 languageConfig.interactiveShell = "iex";
 languageConfig.builders = {};
