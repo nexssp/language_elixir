@@ -1,4 +1,7 @@
-let languageConfig = Object.assign({}, require("../config.win32"));
+let languageConfig = Object.assign(
+  {},
+  require(`../config.${process.platform}`)
+);
 languageConfig.title = "Elixir";
 languageConfig.description =
   "Elixir is a dynamic, functional language designed for building scalable and maintainable applications.";
@@ -14,8 +17,8 @@ languageConfig.compilers = {
     install: `scoop install erlang elixir && ${process.env.NEXSS_SRC_PATH}\\install\\refreshenv.cmd`,
     command: "mix",
     args: "run <file>",
-    help: ``
-  }
+    help: ``,
+  },
 };
 languageConfig.errors = require("./nexss.elixir.errors");
 languageConfig.languagePackageManagers = {
@@ -41,8 +44,8 @@ languageConfig.languagePackageManagers = {
         console.log("mix already initialized.");
       }
     },
-    else: "mix"
-  }
+    else: "mix",
+  },
 };
 
 module.exports = languageConfig;
