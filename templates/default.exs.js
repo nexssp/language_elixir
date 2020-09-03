@@ -5,7 +5,7 @@ const config = {
   commands: [
     process.platform === "win32"
       ? `Powershell -Command "if (Test-Path src ) { cd src ; mv mix.exs ../mix.exs ; cd ..} else { mix deps.get }"`
-      : `bash -c "if [ -d src ]; then cd src ; mv mix.exs ../mix.exs ; cd ..; else mix deps.get;fi"`,
+      : `if [ -d src ]; then cd src ; mv mix.exs ../mix.exs ; cd ..; else mix deps.get; fi`,
   ],
   repos: [],
   descriptions: [
