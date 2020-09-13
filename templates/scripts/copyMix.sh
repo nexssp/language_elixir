@@ -1,0 +1,1 @@
+if [ -d src ]; then cd src ; mv mix.exs ../mix.exs ; cd ..; else mix deps.get; fi

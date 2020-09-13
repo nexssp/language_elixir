@@ -9,6 +9,27 @@ languageConfig.compilers = {
   },
 };
 
+const {
+  replaceCommandByDist,
+  dist,
+} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
+const distName = dist();
+languageConfig.dist = distName;
+
+// TODO: Later to cleanup this config file !!
+switch (distName) {
+  case "Alpine Linux":
+    languageConfig.compilers.elixir.install = `apk add elixir
+mix local.hex --force
+mix deps.get`;
+    break;
+  default:
+    languageConfig.compilers.elixir.install = replaceCommandByDist(
+      "apt update && apt install elixir"
+    );
+    break;
+}
+
 languageConfig.languagePackageManagers = {
   mix: {
     installation: `bash ${installElixir}`,
