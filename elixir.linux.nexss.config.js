@@ -1,31 +1,27 @@
 let languageConfig = Object.assign({}, require("./elixir.win32.nexss.config"));
+const os = require(`${process.env.NEXSS_SRC_PATH}/node_modules/@nexssp/os/`);
+const sudo = os.sudo();
+
 const installElixir = `${__dirname}/install/installElixir.linux.sh`;
 languageConfig.compilers = {
   elixir: {
-    install: `bash ${installElixir}`,
+    install: `${sudo}bash ${installElixir}`,
     command: "mix",
     args: "run <file>",
     help: ``,
   },
 };
 
-const {
-  replaceCommandByDist,
-  dist,
-} = require(`${process.env.NEXSS_SRC_PATH}/lib/osys`);
-const distName = dist();
-languageConfig.dist = distName;
-
 // TODO: Later to cleanup this config file !!
-switch (distName) {
+switch (os.name()) {
   case "Alpine Linux":
-    languageConfig.compilers.elixir.install = `apk add elixir
+    languageConfig.compilers.elixir.install = `${sudo}apk add elixir
 mix local.hex --force
 mix deps.get`;
     break;
   default:
-    languageConfig.compilers.elixir.install = replaceCommandByDist(
-      "apt update && apt install elixir"
+    languageConfig.compilers.elixir.install = os.replacePMByDistro(
+      `${sudo}apt update -y && ${sudo}apt install -y elixir`
     );
     break;
 }
@@ -33,7 +29,7 @@ mix deps.get`;
 languageConfig.languagePackageManagers = {
   mix: {
     installation: `bash ${installElixir}`,
-    rebar3: `sh ${__dirname}/install/installRebar3.sh`,
+    rebar3: `${sudo}sh ${__dirname}/install/installRebar3.sh`,
     messageAfterInstallation: "",
     installed: "mix escript",
     search: "mix hex.search",
