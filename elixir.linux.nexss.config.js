@@ -13,6 +13,13 @@ languageConfig.compilers = {
 
 // TODO: Later to cleanup this config file !!
 switch (process.distro) {
+  case process.distros.UBUNTU:
+    languageConfig.compilers.elixir.install = `${sudo}wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb && ${sudo} dpkg -i erlang-solutions_2.0_all.deb
+${sudo}apt-get -y update
+${sudo}apt-get -y install esl-erlang elixir locales
+mix local.hex --force
+mix deps.get`;
+    break;
   case "Alpine Linux":
     languageConfig.compilers.elixir.install = `${sudo}apk add elixir
 mix local.hex --force
