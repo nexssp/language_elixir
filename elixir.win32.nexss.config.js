@@ -44,8 +44,17 @@ languageConfig.languagePackageManagers = {
         console.log("mix already initialized.");
       }
     },
+
     else: "mix",
   },
 };
+
+const firstPM =
+  languageConfig.languagePackageManagers[
+    Object.keys(languageConfig.languagePackageManagers)[0]
+  ];
+
+// Just in case someone wants to use new (like elixir)
+firstPM.new = firstPM.init;
 
 module.exports = languageConfig;
