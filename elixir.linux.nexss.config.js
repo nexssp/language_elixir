@@ -1,6 +1,5 @@
 let languageConfig = Object.assign({}, require("./elixir.win32.nexss.config"));
-const os = require(`${process.env.NEXSS_SRC_PATH}/node_modules/@nexssp/os/`);
-const sudo = os.sudo();
+const sudo = process.sudo;
 
 const installElixir = `${__dirname}/install/installElixir.linux.sh`;
 languageConfig.compilers = {
@@ -13,14 +12,14 @@ languageConfig.compilers = {
 };
 
 // TODO: Later to cleanup this config file !!
-switch (os.name()) {
+switch (process.distro) {
   case "Alpine Linux":
     languageConfig.compilers.elixir.install = `${sudo}apk add elixir
 mix local.hex --force
 mix deps.get`;
     break;
   default:
-    languageConfig.compilers.elixir.install = os.replacePMByDistro(
+    languageConfig.compilers.elixir.install = process.replacePMByDistro(
       `${sudo}apt update -y && ${sudo}apt install -y elixir`
     );
     break;

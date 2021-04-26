@@ -4,7 +4,7 @@ const config = {
   files: ["mix.exs"],
   commands: [
     "echo we need to install elixir compiler to make them work.",
-    "nexss exs install",
+    "if ! command -v mix &> /dev/null; then nexss erl install; nexss exs install; fi",
     process.platform === "win32"
       ? `Powershell -Command "if (Test-Path src ) { cd src ; mv mix.exs ../mix.exs ; cd ..} else { mix deps.get }"`
       : `if [ -d src ]; then cd src ; mv mix.exs ../mix.exs ; cd ..; else mix deps.get; fi`,
