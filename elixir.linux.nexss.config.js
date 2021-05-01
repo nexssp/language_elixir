@@ -21,7 +21,12 @@ ${sudo}apt-get -y install esl-erlang elixir locales
 mix local.hex --force
 mix deps.get`;
     break;
-  case "Alpine Linux":
+  case process.distros.FEDORA:
+    languageConfig.compilers.elixir.install = `${sudo}dnf install elixir erlang
+mix local.hex --force
+mix deps.get`;
+    break;
+  case process.distros.ALPINE:
     languageConfig.compilers.elixir.install = `${sudo}apk add elixir
 mix local.hex --force
 mix deps.get`;
